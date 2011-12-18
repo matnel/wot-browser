@@ -8,6 +8,8 @@ import com.nokia.meego 1.0
 
 import QtWebKit 1.0
 
+import 'wot.js' as ValidationService
+
 Page {
 
     tools: commonTools
@@ -30,46 +32,19 @@ Page {
                 target = 'http://' + target
             }
 
-            // validate url via WOT
-            var serviceURL = 'http://api.mywot.com/0.4/public_link_json?hosts='
-            var targetURL = serviceURL + target + '/'
-            var request = new XMLHttpRequest()
+            var request = ValidationService.validate( target, handleResponse )
 
-            request.onreadystatechange = function() {
-                if( request.readyState == XMLHttpRequest.DONE ) {
-                    var canOpen = true
-                    var data = JSON.parse( request.responseText )
+        }
 
-                    var firstKey = ''
-
-                    for( var i in data ) {
-                        firstKey = i
-                    }
-
-                    // WOT is stange, api indexes 0, 1, 2, 4
-                    for( var j = 0; j < 3; j++ ) {
-                        if( data[firstKey][j][0] < 40 ) {
-                            canOpen = false
-                        }
-                    }
-
-                    if( data[firstKey][4][0] < 40 ) {
-                        canOpen = false;
-                    }
-
-                    if( canOpen ) {
-                        browser.url = target
-                    } else {
-                        // warn user
-                        warning.open()
-                    }
-                }
+        function handleResponse( response ) {
+            if( response.siteOk ) {
+                browser.url = response.site
+            } else {
+                warning.open();
             }
-
-            request.open( 'GET', targetURL )
-            request.send()
         }
     }
+
 
     WebView {
         id : browser
