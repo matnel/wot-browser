@@ -14,6 +14,10 @@ Page {
 
     tools: commonTools
 
+    function back() {
+        browser.back.trigger()
+    }
+
     TextField {
         id : url
         width: 0.8 * parent.width
