@@ -37,6 +37,7 @@ Page {
         }
 
         function handleResponse( response ) {
+            url.text = response.site
             if( response.siteOk ) {
                 browser.url = response.site
             } else {
@@ -59,11 +60,16 @@ Page {
         anchors.bottom: parent.bottom
     }
 
-    Dialog {
+    Warning {
         id: warning
-        title : Label { text : 'Can not open the page'; color: "white" }
-        content : Label { text : 'The page you requested is considered harmful by the Web of Trust. I will not open the page for you.'; color: "white"; width: parent.width - 20 }
-        buttons: Button { text : 'Close'; onClicked: warning.accept() }
+
+        function accepted() {
+            // do nothing
+        }
+
+        function rejected() {
+            browser.url = url.text
+        }
     }
 
 }
