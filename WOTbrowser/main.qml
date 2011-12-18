@@ -31,8 +31,16 @@ PageStackWindow {
             }
             MenuItem {
                 text: 'About'
+                onClicked: about.open()
             }
         }
+    }
+
+    QueryDialog {
+        id: about
+        titleText: 'About this application'
+        message: 'This is a prototype of a browser integrating the Web of Trust as part of the browsing experience. Application is developed as a proof of concept and is not product maturity. Created by Matti Nelimarkka <ext-matti.nelimarkka@nokia.com>.'
+        acceptButtonText: 'Ok'
     }
 
 }
