@@ -62,6 +62,20 @@ Page {
         anchors.right: parent.right
         anchors.left: parent.left
         anchors.bottom: parent.bottom
+
+        javaScriptWindowObjects: QtObject {
+                 WebView.windowObjectName: "static"
+
+                 function init() {
+                     console.log("QML Initialized!");
+                 }
+             }
+
+        function runSystem() {
+            browser.evaluateJavaScript( "window.static.init()" );
+        }
+
+        onLoadFinished: runSystem()
     }
 
     Warning {
