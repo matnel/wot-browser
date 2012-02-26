@@ -17,7 +17,7 @@ PageStackWindow {
     ToolBarLayout {
          id: commonTools
          visible: true
-         ToolIcon { iconId: "toolbar-back"; onClicked: { myMenu.close(); pageStack.pop(); } }
+         ToolIcon { iconId: "toolbar-back"; visible: pageStack.currentPage != mainPage; onClicked: { myMenu.close(); pageStack.pop(); } }
          ToolIcon { iconId: "toolbar-back"; visible: pageStack.currentPage == mainPage; onClicked:  { mainPage.back() } }
          ToolIcon { iconId: "toolbar-view-menu"; onClicked: (myMenu.status == DialogStatus.Closed) ? myMenu.open() : myMenu.close() }
      }
@@ -34,13 +34,17 @@ PageStackWindow {
                 text: 'About'
                 onClicked: about.open()
             }
+            MenuItem {
+                text: 'Close app'
+                onClicked: Qt.quit()
+            }
         }
     }
 
     QueryDialog {
         id: about
         titleText: 'About this application'
-        message: 'This is a prototype of a browser integrating the Web of Trust as part of the browsing experience. Application is developed as a proof of concept only and is not in product maturity. Created by Matti Nelimarkka <ext-matti.nelimarkka@nokia.com>.'
+        message: 'This is a prototype of a browser integrating the Web of Trust as part of the browsing experience. Application is developed as a proof of concept only and is not in product maturity. Created in Helsinki Institute for Information Technology HIIT by Matti Nelimarkka <ext-matti.nelimarkka@nokia.com>.'
         acceptButtonText: 'Ok'
     }
 
