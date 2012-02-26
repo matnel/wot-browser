@@ -98,10 +98,10 @@ Page {
 
                     function display(wotdata) {
                         demo.title = wotdata.target;
-                        demo.dimension1 = Math.ceil( wotdata[0][0] / 20);
-                        demo.dimension2 = Math.ceil( wotdata[1][0] / 20);
-                        demo.dimension3 = Math.ceil( wotdata[2][0] / 20);
-                        demo.dimension4 = Math.ceil( wotdata[4][0] / 20);
+                        demo.dimension1 = wotdata[0][0];
+                        demo.dimension2 = wotdata[1][0];
+                        demo.dimension3 = wotdata[2][0];
+                        demo.dimension4 = wotdata[4][0];
                         demo.open();
                     }
 
@@ -162,6 +162,9 @@ Page {
                 Button {
                     text: 'Details'
                     onClicked: {
+                        // update values
+                        console.log( a.riskLevel )
+                        reportPage.setValues( [ a.riskLevel , b.riskLevel, c.riskLevel, d.riskLevel] );
                         pageStack.push( reportPage );
                         demo.close();
                     }

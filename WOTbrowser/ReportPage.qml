@@ -7,76 +7,54 @@ Page {
     tools: commonTools
     anchors.margins: UiConstants.DefaultMargin
 
+    function setValues(list) {
+        general.value = list[0]
+        vendor.value = list[1]
+        privacy.value = list[2]
+        child.value = list[3]
+    }
+
     Flow {
 
         anchors.fill: parent
         anchors.margins: UiConstants.DefaultMargin
-    Label {
-        id: inhope_label
-        width: 0.6 * parent.width
-        text: 'This page contains illegal content'
-    }
 
-    Switch {
-        id : inhope
-        anchors.left: inhope_label.right
-    }
+        spacing: 6
 
-    TextField {
-        visible: inhope.checked
-        id: inhope_spesify
-        placeholderText: 'Please spesify'
-    }
+        Label {
+            color: 'green'
+            font.pixelSize: 30
+            text : 'Rate this page:'
+        }
 
-    Label {
-        text: ' '
-    }
+        WOTSlider {
+            id: general
+            label: 'General trustworthiness'
+        }
 
-    Label {
-        text : 'Help Web of Trust by rating this page'
-    }
+        WOTSlider {
+            id: vendor
+            label: 'Vendor reliability'
+        }
 
-    Label {
-        text: ' '
-    }
+        WOTSlider {
+            id: privacy
+            label: 'Privacy'
+        }
 
-    Label {
-        text: 'General trustworthiness'
-    }
+        WOTSlider {
+            id: child
+            label: 'Child safetyness'
+        }
 
-    Slider {
-        minimumValue: 0
-        maximumValue: 100
-        stepSize: 1
-        valueIndicatorVisible: true
-    }
-
-    Label {
-        text: 'Privacy'
-    }
-
-    Slider {
-        minimumValue: 0
-        maximumValue: 100
-        stepSize: 1
-        valueIndicatorVisible: true
-    }
-
-    Label {
-        text: 'Child safetyness'
-    }
-
-    Slider {
-        minimumValue: 0
-        maximumValue: 100
-        stepSize: 1
-        valueIndicatorVisible: true
-    }
-
-    Button {
-        text: 'Send report'
-        onClicked: pageStack.pop();
-    }
+        Button {
+            text: 'Send report'
+            onClicked: {
+                pageStack.pop();
+                // clear page
+                reportPage.setValues([50,50,50,50]);
+            }
+        }
 
     }
 
