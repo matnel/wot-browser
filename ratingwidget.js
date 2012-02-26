@@ -71,50 +71,6 @@ jQuery(document).ready(function() {
 		return null;
 	};
 
-	var getsize = function() {
-		var cx = 0;
-		var cy = 0;
-	
-		if (typeof(window.innerWidth) == "number") {
-			cx = window.innerWidth;
-			cy = window.innerHeight;
-		} else if (document.documentElement &&
-				(document.documentElement.clientWidth ||
-				 document.documentElement.clientHeight)) {
-			cx = document.documentElement.clientWidth;
-			cy = document.documentElement.clientHeight;
-		} else if (document.body &&
-				(document.body.clientWidth ||
-				 document.body.clientHeight)) {
-			cx = document.body.clientWidth;
-			cy = document.body.clientHeight;
-		}
-	
-		return { width: cx, height: cy };
-	};
-	
-	var getscroll = function() {
-		var x = 0;
-		var y = 0;
-	
-		if (typeof(window.pageYOffset) == 'number') {
-			x = window.pageXOffset;
-			y = window.pageYOffset;
-		} else if (document.body &&
-				(document.body.scrollLeft ||
-				 document.body.scrollTop)) {
-			x = document.body.scrollLeft;
-			y = document.body.scrollTop;
-		} else if (document.documentElement &&
-				(document.documentElement.scrollLeft ||
-				 document.documentElement.scrollTop)) {
-			x = document.documentElement.scrollLeft;
-			y = document.documentElement.scrollTop;
-		}
-	
-		return { x: x, y: y };
-	};
-
 	/* Styles */
 	var addstyle = function() {
 		var style = "";
