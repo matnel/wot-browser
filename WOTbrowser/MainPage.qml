@@ -64,27 +64,23 @@ Page {
 
     }
 
-
-    Item {
+    Rectangle {
+        color: 'green'
 
         anchors.top: top.bottom
-        anchors.right: parent.right
-        anchors.left: parent.left
         anchors.bottom: parent.bottom
-
-        width: parent.width
-        // FIXME: This won't scale nicely
-        height: parent.height - top.height
+        anchors.left: parent.left
+        anchors.right: parent.right
 
         Flickable {
 
             id: flick
 
-            height: parent.height
             width: parent.width
+            height: parent.height
 
-            contentWidth: Math.max( browser.width , flick.width )
-            contentHeight: Math.max( browser.height , flick.height )
+            contentWidth: Math.min( browser.width , 200 )
+            contentHeight: Math.min( browser.height , 200 )
 
             pressDelay: 200
 
@@ -92,6 +88,11 @@ Page {
                 id : browser
 
                 url : 'http://hiit.fi/'
+
+                preferredWidth: flick.width
+                preferredHeight: flick.height
+
+                // focus: true
 
                 javaScriptWindowObjects: QtObject {
                     WebView.windowObjectName: "_qml"
@@ -123,56 +124,12 @@ Page {
 
             }
         }
+
     }
 
-    Menu {
+    WOTDisplay {
         id: demo
-        property alias title: header.text
-        property alias dimension1: a.riskLevel
-        property alias dimension2: b.riskLevel
-        property alias dimension3: c.riskLevel
-        property alias dimension4: d.riskLevel
-        MenuLayout {
-            Flow {
-                flow: Flow.TopToBottom
-                spacing: 6
-                Label {
-                    id: header
-                    text: '!! Header'
-                    color: 'green'
-                    font.pixelSize: 30
-                }
-                WOTIcon {
-                    id: a
-                    name: 'Trustworthiness'
-                }
-                WOTIcon {
-                    id: b
-                    name: 'Vendor reliability'
-                }
-                WOTIcon {
-                    id: c
-                    name: 'Privacy'
-                }
-                WOTIcon {
-                    id: d
-                    name: 'Child safety'
-                }
-
-                Button {
-                    text: 'Details'
-                    onClicked: {
-                        // update values
-                        console.log( a.riskLevel )
-                        reportPage.setValues( [ a.riskLevel , b.riskLevel, c.riskLevel, d.riskLevel] );
-                        pageStack.push( reportPage );
-                        demo.close();
-                    }
-                }
-            }
-        }
     }
-
 
     Warning {
         id: warning
