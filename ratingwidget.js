@@ -1,11 +1,20 @@
 /*
-	Copyright © 2011  WOT Services Oy <info@mywot.com>
+  Copyright (c) 2011  WOT Services Oy <info@mywot.com>
+  Adapted for Qt use by Matti Nelimarkka, HIIT (ext-matti.nelimarkka@nokia.com).
 */
+
+_qml.debug("1 Ratingwidget.js at " + window.location.href );
+
+
 if (!wotjquery) {
 	jQuery.noConflict();
 }
 
+_qml.debug("2 Ratingwidget.js at " + window.location.href );
+
 jQuery(document).ready(function() {
+
+        _qml.debug("Executing at " + window.location.href );
 
 	/* Constants */
 	var ratings = [ -1, 0, 20, 40, 60, 80 ];
@@ -126,113 +135,6 @@ jQuery(document).ready(function() {
 			"}" + style + "</style>");
 	};
 
-	/* Tooltip */
-	var gettippos = function(e, l) {
-		var basey = l.offset().top;
-
-		/* IE 7 computes the element position wrong sometimes, keep near
-			the cursor */
-		if (basey > e.pageY + l.height()) {
-			basey = e.pageY - l.height() / 2;
-		}
-
-		var x = e.pageX - tooltip_options.offset_x;
-		var y = basey - tooltip_options.height -
-					tooltip_options.offset_y;
-
-		var sz = getsize();
-		var sc = getscroll();
-
-		if (x < sc.x) {
-			/* Align on the left edge */
-			x = sc.x;
-		} else if (sz.width > 0 &&
-				x - sc.x + tooltip_options.width > sz.width) {
-			/* Align on the right edge */
-			x = sz.width + sc.x - tooltip_options.width -
-					tooltip_options.scrollbar_x;
-		}
-		if (y < sc.y) {
-			/* Move to the bottom */
-			y = basey + l.height() + tooltip_options.offset_y;
-		}
-
-		return { x: x, y: y };
-	};
-
-	var showtip = function(x, y, target) {
-		if (!tooltip) {
-			return;
-		}
-		var appearance = ++tooltip_status.appearance;
-		window.setTimeout(function() {
-			if (tooltip_status.hovering && !tooltip_status.ontip &&
-					appearance == tooltip_status.appearance) {
-				tooltip.css("top",  y + "px");
-				tooltip.css("left", x + "px");
-				tooltip.attr("href", tooltip_options.linkbase +
-					encodeURIComponent(target));
-
-				if (tooltip.css("display") != "block") {
-					if (jQuery.browser.msie) {
-						tooltip.css("display", "block");
-					} else {
-						tooltip.fadeIn(tooltip_options.fade_speed);
-					}
-				}
-			}
-		}, tooltip_options.delay_in);
-	};
-
-	var hidetip = function() {
-		if (!tooltip) {
-			return;
-		}
-		var appearance = tooltip_status.appearance;
-		window.setTimeout(function() {
-			if (!tooltip_status.hovering && tooltip.css("display") != "none" &&
-					appearance == tooltip_status.appearance) {
-				if (jQuery.browser.msie) {
-					tooltip.css("display", "none");
-				} else {
-					tooltip.fadeOut(tooltip_options.fade_speed);
-				}
-				tooltip_status.ontip = false;
-			}
-		}, tooltip_options.delay_out);
-	};
-
-
-	var addtooltip = function() {
-		if (!tooltip_options.enabled) {
-			return;
-		}
-
-		jQuery("body").append("<a id=\"wot-tooltip\" class=\"" +
-				rating_options.exclass + "\" style=\"" +
-			"background: url(\'" + tooltip_options.bg_image +
-				rating_options.imgext + "\') top left no-repeat; " +
-			"border: 0; " +
-			"cursor: pointer; " +
-			"display: none; " +
-			"position: absolute; " +
-			"height: "  + tooltip_options.height + "px; " +
-			"width: "   + tooltip_options.width  + "px; " +
-			"z-index: " + tooltip_options.zindex + ";\"></a>");
-	
-		tooltip = jQuery("#wot-tooltip");
-
-		if (tooltip) {
-			tooltip.hover(function(e) {
-				tooltip_status.ontip = tooltip_status.hovering = true;
-			},
-			function(e) {
-				tooltip_status.ontip = tooltip_status.hovering = false;
-				hidetip();
-			});
-		}
-	};
-
 	/* Ratings */
 	var addratings = function() {
 		jQuery(rating_options.selector).each(function(i) {
@@ -309,6 +211,7 @@ jQuery(document).ready(function() {
 			var h = gethostname(l.attr("href"));
 
 			if (!h || loaded[h]) {
+				_qml.debug("Nothing to do with" + h );
 				return;
 			}
 
@@ -337,9 +240,7 @@ jQuery(document).ready(function() {
 
 		updateratings(hosts);
 
-		if (rating_options.updateinterval > 0) {
-			window.setTimeout(updatelinks, rating_options.updateinterval);
-		}
+		_qml.debug("Done executing at " + window.location.href );
 	};
 
 	/* Options */
@@ -383,7 +284,6 @@ jQuery(document).ready(function() {
 
 	/* Do stuff */
 	addstyle();
-	addtooltip();
 	updatelinks();
 });
 
