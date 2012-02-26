@@ -67,22 +67,26 @@ Page {
 
     Item {
 
-        anchors.top: url.bottom
+        anchors.top: top.bottom
         anchors.right: parent.right
         anchors.left: parent.left
         anchors.bottom: parent.bottom
 
         width: parent.width
         // FIXME: This won't scale nicely
-        height: parent.height - url.height
+        height: parent.height - top.height
 
         Flickable {
+
+            id: flick
 
             height: parent.height
             width: parent.width
 
-            contentWidth: browser.width
-            contentHeight: browser.height
+            contentWidth: Math.max( browser.width , flick.width )
+            contentHeight: Math.max( browser.height , flick.height )
+
+            pressDelay: 200
 
             WebView {
                 id : browser
