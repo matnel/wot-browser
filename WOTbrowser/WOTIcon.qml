@@ -11,7 +11,8 @@ Item {
     width: parent.width
 
     onRiskLevelChanged: {
-        icon.source = icon._url + riskLevel + icon._extension
+        var i = Math.floor( riskLevel / 20 );
+        icon.source = icon._url + i + icon._extension
     }
 
     Label {
