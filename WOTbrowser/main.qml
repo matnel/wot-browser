@@ -6,11 +6,11 @@ PageStackWindow {
 
     initialPage: mainPage
 
-    MainPage {
+    BrowserPage {
         id: mainPage
     }
 
-    ReportPage{
+    ReportPage {
         id: reportPage
      }
 
