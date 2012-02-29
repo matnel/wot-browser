@@ -129,6 +129,7 @@ Page {
 
     }
 
+
     Display {
         id: demo
     }
@@ -144,5 +145,6 @@ Page {
             browser.url = url.text
         }
     }
+
 
 }

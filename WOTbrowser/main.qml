@@ -1,6 +1,8 @@
 import QtQuick 1.1
 import com.nokia.meego 1.0
 
+import "wot"
+
 PageStackWindow {
     id: appWindow
 
@@ -10,7 +12,7 @@ PageStackWindow {
         id: mainPage
     }
 
-    ReportPage {
+    Reporting {
         id: reportPage
      }
 
