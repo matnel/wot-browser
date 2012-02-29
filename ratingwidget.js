@@ -6,9 +6,9 @@
 _qml.debug("1 Ratingwidget.js at " + window.location.href );
 
 
-if (!wotjquery) {
-	jQuery.noConflict();
-}
+// if (!wotjquery) {
+//	jQuery.noConflict();
+// }
 
 _qml.debug("2 Ratingwidget.js at " + window.location.href );
 
@@ -64,6 +64,7 @@ jQuery(document).ready(function() {
 	var gethostname = function(url) {
 		if (url) {
 			var m = /^(\w+):\/\/((\w+)(:(\w+))?@)?([^:\/\?&=#\[\]]+|\[[^\/\?&=#\[\]]+\])\.?(:(\d+))?(.*)$/.exec(url);
+			// m = /^http(s)?\:\/\/(([\w\-]+\.)?google\.(com?\.[a-z]{2}|[a-z]{2,})|([\w\-]+\.)*start3\.mozilla\.com)\/(url|pagead|interstitial|aclk|product_url)\\?.*&?(q|adurl|url)(=|%3D)(https?(\:|%3A)[^&]+)(&.*)?/.exec(url);
 			if (m && m[6] != null) {
 				return jQuery.trim(m[6].toLowerCase());
 			}
@@ -77,17 +78,17 @@ jQuery(document).ready(function() {
 
 		for (var i = 0; i < ratings.length; ++i) {
 	 		style += " .wot-r" + i + "{ " +
-				"background: url(\'" + wotbase + "/images/" + i +
-				rating_options.imgext + "\') bottom right no-repeat; }";
+				"background: url(\'" + wotbase + "/images/28_28/" + i +
+				rating_options.imgext + "\'); }";
 		}
 
 		jQuery("head").append("<style type=\"text/css\"> " +
 			".wot-icon { " +
-				"display: inline; " +
-				"height: 16px; " +
-				"padding-top: 3px; " +
-				"padding-left: 16px; " +
-				"width: 16px; " +
+				// "display: inline; " +
+				"height: 28px; " +
+				// "padding-top: 3px; " +
+				// "padding-left: 28px; " +
+				"width: 28px; " +
 			"}" + style + "</style>");
 	};
 
@@ -104,9 +105,13 @@ jQuery(document).ready(function() {
 
 			var h = gethostname(l.attr("href"));
 
+			_qml.debug("Testing link " + l.attr("href") );
+
 			if (!h || !data[h]) {
+				_qml.debug("Do nothing");
 				return;
 			}
+			_qml.debug("Add WOT");
 
 			var c = "wot-icon wot-r";
 
@@ -122,8 +127,8 @@ jQuery(document).ready(function() {
 			}
 
 			l.attr(rating_options.hasrating, "true");
-			// $("<div class=\'" + c + "\'><a href=\'\'>Uuuu</a></div>");
-			var icon = $("<big><strong>WOT</strong></big>");
+			var icon = $("<div class=\'" + c + "\'> </div>");
+			// var icon = $("<big><strong>WOT</strong></big>");
 
 			// ** changed by Matti, mobile OS spesific content ** //
 			icon.click( function() {
@@ -167,7 +172,6 @@ jQuery(document).ready(function() {
 			var h = gethostname(l.attr("href"));
 
 			if (!h || loaded[h]) {
-				_qml.debug("Nothing to do with" + h );
 				return;
 			}
 
