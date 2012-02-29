@@ -87,7 +87,7 @@ Page {
             WebView {
                 id : browser
 
-                url : 'http://hiit.fi/'
+                url : 'http://www.google.com/'
 
                 preferredWidth: flick.width
                 preferredHeight: flick.height
