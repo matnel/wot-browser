@@ -1,6 +1,7 @@
 import QtQuick 1.0
 
 import com.nokia.meego 1.0
+import com.nokia.extras 1.1
 
 Page {
 
@@ -53,9 +54,16 @@ Page {
                 pageStack.pop();
                 // clear page
                 reportPage.setValues([50,50,50,50]);
+                info.text = 'Thank you, we got your report!'
+                info.show()
             }
         }
 
+    }
+
+    InfoBanner {
+        id : info
+        text: '!! '
     }
 
 }
