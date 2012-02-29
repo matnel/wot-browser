@@ -1,6 +1,8 @@
 import QtQuick 1.1
 import com.nokia.meego 1.0
 
+import com.nokia.extras 1.1
+
 import "wot"
 
 PageStackWindow {
@@ -48,6 +50,11 @@ PageStackWindow {
         titleText: 'About this application'
         message: 'This is a prototype of a browser integrating the Web of Trust as part of the browsing experience. Application is developed as a proof of concept only and is not in product maturity. Created in Helsinki Institute for Information Technology HIIT by Matti Nelimarkka <ext-matti.nelimarkka@nokia.com>.'
         acceptButtonText: 'Ok'
+    }
+
+    InfoBanner {
+        id : info
+        text: '!! '
     }
 
 }
