@@ -63,6 +63,10 @@ jQuery(document).ready(function() {
 	/* Helpers */
 	var gethostname = function(url) {
 		if (url) {
+			var t = /\/url\?q=(.*)?/.exec(url);
+  			if (t && t[1] != null ) {
+				url = t[1];
+  			}
 			var m = /^(\w+):\/\/((\w+)(:(\w+))?@)?([^:\/\?&=#\[\]]+|\[[^\/\?&=#\[\]]+\])\.?(:(\d+))?(.*)$/.exec(url);
 			// m = /^http(s)?\:\/\/(([\w\-]+\.)?google\.(com?\.[a-z]{2}|[a-z]{2,})|([\w\-]+\.)*start3\.mozilla\.com)\/(url|pagead|interstitial|aclk|product_url)\\?.*&?(q|adurl|url)(=|%3D)(https?(\:|%3A)[^&]+)(&.*)?/.exec(url);
 			if (m && m[6] != null) {
@@ -78,17 +82,17 @@ jQuery(document).ready(function() {
 
 		for (var i = 0; i < ratings.length; ++i) {
 	 		style += " .wot-r" + i + "{ " +
-				"background: url(\'" + wotbase + "/images/28_28/" + i +
+				"background: url(\'" + wotbase + "/images/" + i +
 				rating_options.imgext + "\'); }";
 		}
 
 		jQuery("head").append("<style type=\"text/css\"> " +
 			".wot-icon { " +
-				// "display: inline; " +
-				"height: 28px; " +
-				// "padding-top: 3px; " +
-				// "padding-left: 28px; " +
-				"width: 28px; " +
+				"display: inline; " +
+				"height: 40px; " +
+				"padding-top: 3px; " +
+				"padding-left: 40px; " +
+				"width: 45px; " +
 			"}" + style + "</style>");
 	};
 
@@ -111,7 +115,7 @@ jQuery(document).ready(function() {
 				_qml.debug("Do nothing");
 				return;
 			}
-			_qml.debug("Add WOT");
+			_qml.debug("Add WOT " + h);
 
 			var c = "wot-icon wot-r";
 
