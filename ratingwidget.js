@@ -205,6 +205,7 @@ jQuery(document).ready(function() {
 		updateratings(hosts);
 
 		_qml.debug("Done executing at " + window.location.href );
+		_qml.load_done();
 	};
 
 	/* Options */
