@@ -3,18 +3,11 @@
   Adapted for Qt use by Matti Nelimarkka, HIIT (ext-matti.nelimarkka@nokia.com).
 */
 
-_qml.debug("1 Ratingwidget.js at " + window.location.href );
-
-
 // if (!wotjquery) {
 //	jQuery.noConflict();
 // }
 
-_qml.debug("2 Ratingwidget.js at " + window.location.href );
-
 jQuery(document).ready(function() {
-
-        _qml.debug("Executing at " + window.location.href );
 
 	/* Constants */
 	var ratings = [ -1, 0, 20, 40, 60, 80 ];
@@ -146,6 +139,8 @@ jQuery(document).ready(function() {
 			t.append( icon );
 			l.replaceWith( t );
 		});
+		// tell UI that execution is done
+		_qml.load_done();
 	};
 
 	var updateratings = function(hosts) {
@@ -203,9 +198,6 @@ jQuery(document).ready(function() {
 		});
 
 		updateratings(hosts);
-
-		_qml.debug("Done executing at " + window.location.href );
-		_qml.load_done();
 	};
 
 	/* Options */
