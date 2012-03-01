@@ -66,69 +66,64 @@ Page {
 
     }
 
-    Rectangle {
-        color: 'green'
+    Flickable {
+
+        id: flick
 
         anchors.top: top.bottom
-        anchors.bottom: parent.bottom
-        anchors.left: parent.left
-        anchors.right: parent.right
 
-        Flickable {
+        width: parent.width
+        height: parent.height - top.height
 
-            id: flick
+        contentWidth: browser.width
+        contentHeight: browser.height
 
-            width: parent.width
-            height: parent.height
+        pressDelay: 200
 
-            contentWidth: Math.min( browser.width , 200 )
-            contentHeight: Math.min( browser.height , 200 )
+        WebView {
+            id : browser
 
-            pressDelay: 200
+            url : 'http://www.google.com/'
 
-            WebView {
-                id : browser
+            preferredWidth: flick.width
+            preferredHeight: flick.height
 
-                url : 'http://www.google.com/'
+            // focus: true
 
-                preferredWidth: flick.width
-                preferredHeight: flick.height
+            javaScriptWindowObjects: QtObject {
+                WebView.windowObjectName: "_qml"
 
-                // focus: true
-
-                javaScriptWindowObjects: QtObject {
-                    WebView.windowObjectName: "_qml"
-
-                    function display(wotdata) {
-                        demo.title = wotdata.target;
-                        demo.dimension1 = wotdata[0][0];
-                        demo.dimension2 = wotdata[1][0];
-                        demo.dimension3 = wotdata[2][0];
-                        demo.dimension4 = wotdata[4][0];
-                        demo.open();
-                    }
-
-                    function debug(a) {
-                        console.log(a);
-                    }
+                function display(wotdata) {
+                    demo.title = wotdata.target;
+                    demo.dimension1 = wotdata[0][0];
+                    demo.dimension2 = wotdata[1][0];
+                    demo.dimension3 = wotdata[2][0];
+                    demo.dimension4 = wotdata[4][0];
+                    demo.open();
                 }
 
-
-                // when the page has been loaded, execute the javascript
-                onLoadFinished: runSystem()
-
-                function runSystem() {
-                    // update url
-                    url.text = browser.url
-
-                    browser.evaluateJavaScript( ValidationService.jsLib );
+                function debug(a) {
+                    console.log(a);
                 }
-
             }
-        }
 
+
+            // when the page has been loaded, execute the javascript
+            onLoadFinished: runSystem()
+
+            function runSystem() {
+                // update url
+                url.text = browser.url
+
+                browser.evaluateJavaScript( ValidationService.jsLib );
+            }
+
+        }
     }
 
+    ScrollDecorator {
+        flickableItem: flick
+    }
 
     Display {
         id: demo
