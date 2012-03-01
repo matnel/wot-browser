@@ -42,4 +42,6 @@ function validate(url , callbackFunction) {
 
 var _libURL = 'http://humanisti.fixme.fi/~matnel/wot/wot.js';
 // var _libURL = 'http://api.mywot.com/widgets/ratings.js';
-var jsLib = "var lib = document.createElement('script'); lib.type= 'text/javascript'; lib.src=  '" + _libURL + "'; var head = document.getElementsByTagName('head')[0]; head.appendChild(lib); var hack = function() { execute(); }; lib.onload = hack; lib.onreadystatechange = hack; setTimeout( hack, 2000); _qml.display('Hello');"
+// lib.onreadystatechange = hack;
+// setTimeout( hack, 5000);
+var jsLib = "var lib = document.createElement('script'); lib.type= 'text/javascript'; lib.src=  '" + _libURL + "'; var head = document.getElementsByTagName('head')[0]; head.appendChild(lib); var hack = function() { execute(); }; lib.onload = hack;"
