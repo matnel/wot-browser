@@ -28,7 +28,7 @@ Page {
         anchors.left: parent.left
 
         width: parent.width
-        height: url.height
+        height: url.height + bar.height
 
         TextField {
             id : url
@@ -64,6 +64,13 @@ Page {
             }
         }
 
+        ProgressBar {
+            id : bar
+            anchors.top: url.bottom
+            indeterminate: false
+            width: parent.width
+        }
+
     }
 
     Flickable {
@@ -93,6 +100,10 @@ Page {
             javaScriptWindowObjects: QtObject {
                 WebView.windowObjectName: "_qml"
 
+                function load_done() {
+                    bar.indeterminate = false;
+                }
+
                 function display(wotdata) {
                     demo.title = wotdata.target;
                     demo.dimension1 = wotdata[0][0];
@@ -111,10 +122,11 @@ Page {
             // when the page has been loaded, execute the javascript
             onLoadFinished: runSystem()
 
+            onLoadStarted: bar.indeterminate = true;
+
             function runSystem() {
                 // update url
                 url.text = browser.url
-
                 browser.evaluateJavaScript( ValidationService.jsLib );
             }
 
