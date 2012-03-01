@@ -112,10 +112,14 @@ jQuery(document).ready(function() {
 
 			var c = "wot-icon wot-r";
 
+			// by default add zero
+
 			if (!data[h][rating_options.application]) {
 				c += "0";
+				_qml.debug("has no data");
 			} else {
 				for (var j = ratings.length - 1; j >= 0; --j) {
+					_qml.debug( j );
 					if (data[h][rating_options.application][0] >= ratings[j]) {
 						c += j;
 						break;
@@ -123,17 +127,17 @@ jQuery(document).ready(function() {
 				}
 			}
 
+			_qml.debug( c );
+
 			l.attr(rating_options.hasrating, "true");
-			var icon = $("<div class=\'" + c + "\'> </div>");
-			// var icon = $("<big><strong>WOT</strong></big>");
+
+			// var icon = $("<div class=\'" + c + "\'> </div>");
+			var icon = $("<big><strong>WOT</strong></big>");
 
 			// ** changed by Matti, mobile OS spesific content ** //
 			icon.click( function() {
 				_qml.display( data[h] );
-			} )
-			koira = icon;
-			var linkhtml = l.html();
-			var iconhtml = icon.html();
+			} );
 			var t = $('<span>');
 			t.append( l.clone() );
 			t.append( icon );
