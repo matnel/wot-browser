@@ -81,11 +81,12 @@ jQuery(document).ready(function() {
 
 		jQuery("head").append("<style type=\"text/css\"> " +
 			".wot-icon { " +
-				"display: inline; " +
-				"height: 16px; " +
-				"padding-top: 3px; " +
-				"padding-left: 16px; " +
-				"width: 16px; " +
+				// "display: inline; " +
+				// "margin-top: -12px;" +
+				"height: 28px; " +
+				"padding-top: 0px; " +
+				"padding-left: 28px; " +
+				"width: 28px; " +
 			"}" + style + "</style>");
 	};
 
