@@ -56,6 +56,7 @@ jQuery(document).ready(function() {
 	/* Helpers */
 	var gethostname = function(url) {
 		if (url) {
+			// Google spesific stuff!
 			var t = /\/url\?q=(.*)?/.exec(url);
   			if (t && t[1] != null ) {
 				url = t[1];
@@ -78,9 +79,6 @@ jQuery(document).ready(function() {
 				"background: url(\'" + wotbase + "/images/" + i +
 				rating_options.imgext + "\'); }";
 		}
-
-		_qml.debug( 'Adding style' );
-		_qml.debug( jQuery );
 
 		jQuery("head").append("<style type=\"text/css\"> " +
 			".wot-icon { " +
@@ -105,13 +103,9 @@ jQuery(document).ready(function() {
 
 			var h = gethostname(l.attr("href"));
 
-			_qml.debug("Testing link " + l.attr("href") );
-
 			if (!h || !data[h]) {
-				_qml.debug("Do nothing");
 				return;
 			}
-			_qml.debug("Add WOT " + h);
 
 			var c = "wot-icon wot-r";
 
@@ -119,18 +113,14 @@ jQuery(document).ready(function() {
 
 			if (!data[h][rating_options.application]) {
 				c += "0";
-				_qml.debug("has no data");
 			} else {
 				for (var j = ratings.length - 1; j >= 0; --j) {
-					_qml.debug( j );
 					if (data[h][rating_options.application][0] >= ratings[j]) {
 						c += j;
 						break;
 					}
 				}
 			}
-
-			_qml.debug( c );
 
 			l.attr(rating_options.hasrating, "true");
 
