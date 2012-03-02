@@ -79,6 +79,9 @@ jQuery(document).ready(function() {
 				rating_options.imgext + "\'); }";
 		}
 
+		_qml.debug( 'Adding style' );
+		_qml.debug( jQuery );
+
 		jQuery("head").append("<style type=\"text/css\"> " +
 			".wot-icon { " +
 				"display: inline; " +
@@ -131,8 +134,8 @@ jQuery(document).ready(function() {
 
 			l.attr(rating_options.hasrating, "true");
 
-			// var icon = $("<div class=\'" + c + "\'> </div>");
-			var icon = $("<big><strong>WOT</strong></big>");
+			var icon = $("<span class=\'" + c + "\'>&nbsp;</span>");
+			// var icon = $("<big><strong>WOT</strong></big>");
 
 			// ** changed by Matti, mobile OS spesific content ** //
 			icon.click( function() {
