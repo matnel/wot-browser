@@ -57,12 +57,21 @@ jQuery(document).ready(function() {
 	var gethostname = function(url) {
 		if (url) {
 			// Google spesific stuff!
+
+			// detect search results
 			var t = /\/url\?q=(.*)?/.exec(url);
   			if (t && t[1] != null ) {
 				url = t[1];
   			}
+
+			// remove indicators from Google-sites (for demo)
+			var g = /.*(google\.(com?\.[a-z]{2}|[a-z]{2,})|youtube\.com).*$/.test( url );
+			if ( g ) {
+				return "/";
+			}
+
+			// end of Google spesific stuff
 			var m = /^(\w+):\/\/((\w+)(:(\w+))?@)?([^:\/\?&=#\[\]]+|\[[^\/\?&=#\[\]]+\])\.?(:(\d+))?(.*)$/.exec(url);
-			// m = /^http(s)?\:\/\/(([\w\-]+\.)?google\.(com?\.[a-z]{2}|[a-z]{2,})|([\w\-]+\.)*start3\.mozilla\.com)\/(url|pagead|interstitial|aclk|product_url)\\?.*&?(q|adurl|url)(=|%3D)(https?(\:|%3A)[^&]+)(&.*)?/.exec(url);
 			if (m && m[6] != null) {
 				return jQuery.trim(m[6].toLowerCase());
 			}
