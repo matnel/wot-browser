@@ -58,11 +58,19 @@ jQuery(document).ready(function() {
 		if (url) {
 			// Google spesific stuff!
 
+			_qml.debug( url );
+
 			// detect search results
 			var t = /\/url\?q=(.*)?/.exec(url);
   			if (t && t[1] != null ) {
 				url = t[1];
   			}
+
+			// detect ads
+			t = /\/aclk?.*adurl=(.*)?/.exec(url);
+			if (t && t[1] != null ) {
+                                url = t[1];
+                        }
 
 			// remove indicators from Google-sites (for demo)
 			var g = /.*(google\.(com?\.[a-z]{2}|[a-z]{2,})|youtube\.com).*$/.test( url );
