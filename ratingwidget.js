@@ -76,17 +76,16 @@ jQuery(document).ready(function() {
 
 		for (var i = 0; i < ratings.length; ++i) {
 	 		style += " .wot-r" + i + "{ " +
-				"background: url(\'" + wotbase + "/images/" + i +
-				rating_options.imgext + "\'); }";
+				"background: url(\'" + wotbase + "/images/" + i + rating_options.imgext + "\'); background-repeat: no-repeat; }";
 		}
 
 		jQuery("head").append("<style type=\"text/css\"> " +
 			".wot-icon { " +
 				"display: inline; " +
-				"height: 40px; " +
+				"height: 16px; " +
 				"padding-top: 3px; " +
-				"padding-left: 40px; " +
-				"width: 45px; " +
+				"padding-left: 16px; " +
+				"width: 16px; " +
 			"}" + style + "</style>");
 	};
 
