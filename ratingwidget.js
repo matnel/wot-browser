@@ -71,6 +71,8 @@ jQuery(document).ready(function() {
 			}
 
 			// end of Google spesific stuff
+			
+			// get domain
 			var m = /^(\w+):\/\/((\w+)(:(\w+))?@)?([^:\/\?&=#\[\]]+|\[[^\/\?&=#\[\]]+\])\.?(:(\d+))?(.*)$/.exec(url);
 			if (m && m[6] != null) {
 				return jQuery.trim(m[6].toLowerCase());
