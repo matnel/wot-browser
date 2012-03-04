@@ -57,8 +57,7 @@ jQuery(document).ready(function() {
 	var gethostname = function(url) {
 		if (url) {
 			// Google spesific stuff!
-
-			_qml.debug( url );
+			if( /.*(google\.(com?\.[a-z]{2}|[a-z]{2,})|youtube\.com).*$/.test( window.location.href ) ) {
 
 			// detect search results
 			var t = /\/url\?q=(.*)?/.exec(url);
@@ -77,7 +76,7 @@ jQuery(document).ready(function() {
 			if ( g ) {
 				return "/";
 			}
-
+			}
 			// end of Google spesific stuff
 			
 			// get domain
