@@ -54,7 +54,8 @@ PageStackWindow {
 
     InfoBanner {
         id : info
-        text: '!! '
+        anchors.top: parent.top
+        text: '!!'
     }
 
 }
