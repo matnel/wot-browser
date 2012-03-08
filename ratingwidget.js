@@ -102,8 +102,9 @@ jQuery(document).ready(function() {
 				// "display: inline; " +
 				// "margin-top: -12px;" +
 				"height: 28px; " +
-				"padding-top: 0px; " +
+				"padding-bottom: 3px; " +
 				"padding-left: 28px; " +
+				"margin-left: 7px; " +
 				"width: 28px; " +
 			"}" + style + "</style>");
 	};
